@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Контроль сроков годности</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="container">
+      <h1>Контроль сроков годности</h1>
+    </header>
+
+    <main class="container grid">
+      <section class="card">
+        <h2>Добавить позицию</h2>
+
+        <form id="addForm" class="form">
+          <label>
+            Название
+            <input
+              id="name"
+              type="text"
+              placeholder="Например: Йогурт"
+              required
+            />
+          </label>
+
+          <label>
+            Дата начала (покупка/производство)
+            <input id="startDate" type="date" required />
+          </label>
+
+          <div class="row">
+            <label class="grow">
+              Срок (число)
+              <input id="lifeValue" type="number" min="1" value="7" required />
+            </label>
+
+            <label>
+              Единица
+              <select id="lifeUnit">
+                <option value="days">дни</option>
+                <option value="weeks">недели</option>
+                <option value="months">месяцы</option>
+              </select>
+            </label>
+          </div>
+
+          <label>
+            Заметка (опционально)
+            <input
+              id="note"
+              type="text"
+              placeholder="Например: открыто 14.01"
+            />
+          </label>
+
+          <button type="submit">Добавить</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="toolbar">
+          <h2>Список</h2>
+          <div class="row">
+            <select id="filter">
+              <option value="all">Все</option>
+              <option value="soon">Скоро истекает</option>
+              <option value="expired">Просрочено</option>
+            </select>
+            <button id="clearAll" class="danger" type="button">Очистить</button>
+          </div>
+        </div>
+
+        <div class="tableWrap">
+          <table id="table">
+            <thead>
+              <tr>
+                <th>Название</th>
+                <th>Начало</th>
+                <th>Годен до</th>
+                <th>Осталось</th>
+                <th>Статус</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container muted small">
+      <span>Подсветка: красный — просрочено, желтый — скоро.</span>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
